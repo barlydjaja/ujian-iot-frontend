@@ -6,11 +6,15 @@ function App() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080").then((res) => {
-      setData(res.data[0]);
-      console.log(typeof res.data[0]);
-      console.log(res.data[0]);
-    });
+    axios
+      .get(
+        "http://ec2-54-169-148-84.ap-southeast-1.compute.amazonaws.com:8080/"
+      )
+      .then((res) => {
+        setData(res.data[0]);
+        console.log(typeof res.data[0]);
+        console.log(res.data[0]);
+      });
   }, []);
 
   return (
