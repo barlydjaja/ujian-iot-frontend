@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    axios.get("http://localhost:8080").then((res) => {
+      setData(res.data[0]);
+      console.log(typeof res.data[0]);
+      console.log(res.data[0]);
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <main>
+        <h1>Ini Adalah applikasi buatan Barly Joshua Djaja - 2201925651</h1>
+        <p>Aplikasi ini dibuat untuk kebutuhan ujian IOT nomor 1</p>
+        <p>Dibawah ini adalah api yang kita hit ke sisi backend</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <strong>/api/database</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p>return dari endpoint ini berupa</p>
+        <div style={{ border: "2px solid black" }}>
+          <div style={{ color: "green" }}>{"typing..." && data.message}</div>
+          <div style={{ color: "green" }}>
+            {"typing..." && data.student_name}
+          </div>
+          <div style={{ color: "green" }}>{"typing..." && data.student_id}</div>
+          <div style={{ color: "green" }}>
+            {"typing..." && data.student_major}
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
